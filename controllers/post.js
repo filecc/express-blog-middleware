@@ -68,7 +68,7 @@ function show (req, res) {
     }
     const imgPath = (`http://${host}:${port}/images${post.image}`)
     const downloadLink= (`http://localhost:3000/posts/${post.slug}/download`)
-
+    const user = req.cookies.user
     const html = `
     <h1>${post.title}</h1>
     <img style="max-width: 200px" src='/images${post.image}' />
@@ -87,7 +87,7 @@ function show (req, res) {
     </div>
     <p>${post.body}</p>
     <span>${post.tags.join(", ")}</span>
-    <form action="/api/delete/${post.id}" method="POST">
+    ${user && `<form action="/api/delete/${post.id}" method="POST">
     <input type="hidden" name="id" value="${post.id}">
     <div style="display: flex; align-items:center; gap: .2rem;">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:20px">
@@ -96,7 +96,7 @@ function show (req, res) {
 <input style='margin: 1rem 0;' type="submit" value="Cancella questo post">
     </div>
         
-    </form>
+    </form>`}
     <a style='font-weight: bold; display: block; padding: 1rem 0;' href="/posts">Torna alla lista dei post</a>
     
     
