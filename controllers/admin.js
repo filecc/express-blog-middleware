@@ -12,7 +12,8 @@ function index(req, res) {
 
   html = html.replace("{{ admin }}", req.cookies.user.username);
   const posts = fs.readFileSync(path.resolve("./db/posts.json"), "utf8");
-  const postList = JSON.parse(posts)
+  const postList = JSON.parse(posts).sort((a, b) => b.id - a.id)
+
     .map((post) => {
       return `<li style="display: flex; align-items: center; gap: 1rem">
     <span>ID: ${post.id}</span>

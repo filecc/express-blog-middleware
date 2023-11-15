@@ -45,5 +45,16 @@
       "tag3",
       "tag4"
     ]
+  },
+  {
+    "id": 6,
+    "title": "L'ennesimo Post",
+    "slug": "lennesimo-post",
+    "body": "questo è solo l'ennesimo post di prova",
+    "tags": [
+      "prova",
+      "ennesimo"
+    ],
+    "image": "/3e4ffa35c1333132be25623b8a66c817.jpg"
   }
 ]
