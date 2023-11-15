@@ -4,6 +4,7 @@ const adminController = require("../controllers/admin")
 const authMiddleware = require("../middleware/auth")
 
 router.use(authMiddleware)
+
 router.get("/", adminController.index)
 
 
