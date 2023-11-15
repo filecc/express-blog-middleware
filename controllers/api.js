@@ -100,9 +100,9 @@ function destroy(req, res) {
 
 
 function login(req, res) {
+  
   const token = generateJWT(req, res);
   if (token) {
-    res.cookie('session', token, { httpOnly: true });
     res.status(300).redirect('/admin');
   }
 }
