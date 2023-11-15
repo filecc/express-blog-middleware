@@ -23,6 +23,22 @@ function index (req, res) {
    
 }
 
+function login (req, res) {
+    if(req.cookies.session && jwt.verify(req.cookies.session, process.env.JWT_SECRET)){
+      res.redirect('/admin')
+      return
+    }
+    res.sendFile(path.resolve('./views/login.html'))
+  }
+
+  function logout (req, res) {
+    res.clearCookie('session')
+    res.clearCookie('user')
+    res.redirect('/')
+  }
+
 module.exports = {
-    index
+    index,
+    login,
+    logout
   }
