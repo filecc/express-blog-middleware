@@ -3,6 +3,8 @@ const fs = require("fs");
 const path = require("path");
 const env = require("dotenv").config();
 const Post = require("../lib/Post");
+const generateJWT = require("../lib/generateJWT");
+
 
 
 const port = process.env.PORT ?? "";
@@ -96,8 +98,13 @@ function destroy(req, res) {
   res.status(200).redirect('/posts')
 }
 
-function login(req, res){
 
+function login(req, res) {
+  const token = generateJWT(req, res);
+  if (token) {
+    res.cookie('session', token, { httpOnly: true });
+    res.status(300).redirect('/admin');
+  }
 }
 
 module.exports = {
