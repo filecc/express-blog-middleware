@@ -107,10 +107,39 @@ function login(req, res) {
   }
 }
 
+function edit(req, res){
+  const id = req.body.id
+  const postIndex = posts.findIndex((post) => post.id == id)
+  if(!postIndex){
+    res.status(404).json({error: 404, message: `Post with id ${id} not found`})
+    return
+  }
+  const data = req.body
+  const tags = data.tags.split(",").map((tag) => tag.trim())
+
+  let imageSlug;
+
+  if(req.file){
+    fs.unlinkSync(path.resolve(`./public/images/${posts[postIndex].image}`))
+    imageSlug = '/'+ req.file.filename + '.jpg'
+    fs.renameSync(req.file.path, path.resolve(`./public/images${imageSlug}`))
+  }
+
+  posts[postIndex].title = data.title
+  posts[postIndex].body = data.content
+  posts[postIndex].tags = tags
+  posts[postIndex].image = imageSlug ?? posts[postIndex].image
+
+  fs.writeFileSync(path.resolve("./db/posts.json"), JSON.stringify(posts, null, 2))
+
+  res.status(300).redirect(`/posts/${posts[postIndex].id}`)
+}
+
 module.exports = {
   index,
   show,
   store,
   destroy,
-  login
+  login,
+  edit
 };

@@ -9,6 +9,7 @@ router.post('/login', apiController.login)
 router.post("/post/add", multer({dest: "public/images"}).single("image"), apiController.store)
 router.post("/delete/:id", authMiddleware, apiController.destroy)
 router.get("/post/:id", apiController.show)
+router.post("/edit", multer({dest: "public/images"}).single("image"), apiController.edit)
 
 
 

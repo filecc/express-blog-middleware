@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const jwt = require("jsonwebtoken");
 
 /**
  * @param {express.Request} req 

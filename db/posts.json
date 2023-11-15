@@ -56,5 +56,15 @@
       "ennesimo"
     ],
     "image": "/3e4ffa35c1333132be25623b8a66c817.jpg"
+  },
+  {
+    "id": 7,
+    "title": "L'ennesimo Postaccio brutto",
+    "slug": "lennesimo-postaccio",
+    "body": "questo è solo l'ennesimo post di prova",
+    "tags": [
+      "prova"
+    ],
+    "image": "/740ec63b1414c1c741f4fdbcd402aa92.jpg"
   }
 ]
