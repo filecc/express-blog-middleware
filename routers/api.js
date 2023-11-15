@@ -4,12 +4,14 @@ const apiController = require("../controllers/api")
 const multer = require("multer")
 const authMiddleware = require("../middleware/auth");
 
+const doubleMiddleware = [authMiddleware, multer({dest: "public/images"}).single("image")]
+
 router.get("/posts", apiController.index)
 router.post('/login', apiController.login)
-router.post("/post/add", multer({dest: "public/images"}).single("image"), apiController.store)
+router.post("/post/add", doubleMiddleware, apiController.store)
 router.post("/delete/:id", authMiddleware, apiController.destroy)
 router.get("/post/:id", apiController.show)
-router.post("/edit", multer({dest: "public/images"}).single("image"), apiController.edit)
+router.post("/edit", doubleMiddleware, apiController.edit)
 
 
 
